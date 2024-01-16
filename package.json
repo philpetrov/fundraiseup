@@ -1,0 +1,17 @@
+{
+  "name": "fundraiseup",
+  "version": "1.0.0",
+  "description": "test task using playwright",
+  "main": "index.js",
+  "scripts": {
+    "test:debug": "playwright test --debug"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.40.1",
+    "playwright": "^1.40.1",
+    "playwright-expect": "^0.1.2"
+  }
+}
