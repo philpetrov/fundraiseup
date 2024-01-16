@@ -7,22 +7,15 @@ const config = require('../../config').default;
 test.describe('Payment scenarios', () => {
     test('A1. Payment scenario with credit card failure', async ({page}) => {
 
-   // const Main = new MainPage(page)
+        const Main = new MainPage(page)
 
-    //await Main.goto();
-    //await Main.clickGiveNowBtn()
-    
+        await Main.goto();
+        await Main.clickGiveNowBtn()
+        await Main.typePriceInput('100')
+        await Main.clickMonthlyBtn()
+        await Main.clickDonateMonthlyBtn()
+        await Main.clickCoverTransactionCostIfActiveCheckBox()
 
-    //const browser = await chromium.launch({ headless: config.headless });
-    //const context = await browser.newContext();
-    //const page = await context.newPage();
-
-        await page.goto('https://data.fundraiseup.com/qa-test-7R58U3/');
-        await page.frameLocator('iframe[title="Donate Button"]').getByRole('button', { name: 'Give Now' }).click();
-        await page.frameLocator('iframe[title="Donation Widget"]').getByTestId('price-input').fill('100');
-        await page.frameLocator('iframe[title="Donation Widget"]').getByRole('button', { name: 'Monthly' }).click();
-        await page.frameLocator('iframe[title="Donation Widget"]').getByRole('button', { name: 'Donate monthly' }).click();
-        await page.frameLocator('iframe[title="Donation Widget"]').getByRole('checkbox', { name: 'Cover transaction costs' }).click();
         await page.frameLocator('iframe[title="Donation Widget"]').getByRole('button', { name: 'Credit card' }).click();
         await page.frameLocator('iframe[title="Donation Widget"]').frameLocator('iframe[name="__privateStripeFrame6416"]').getByPlaceholder('Card number').fill('4242 4242 4242 4242');
         await page.frameLocator('iframe[title="Donation Widget"]').frameLocator('iframe[name="__privateStripeFrame6417"]').getByPlaceholder('MM / YY').click();
