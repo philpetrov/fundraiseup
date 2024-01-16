@@ -15,10 +15,12 @@ test.describe('Payment scenarios', () => {
         await Main.clickMonthlyBtn()
         await Main.clickDonateMonthlyBtn()
         await Main.clickCoverTransactionCostIfActiveCheckBox()
+        await Main.clickCreditCardBtn()
+        await Main.typeCardNumberInput('4242 4242 4242 4242')
+        
+        //await Main. 
 
-        await page.frameLocator('iframe[title="Donation Widget"]').getByRole('button', { name: 'Credit card' }).click();
-        await page.frameLocator('iframe[title="Donation Widget"]').frameLocator('iframe[name="__privateStripeFrame6416"]').getByPlaceholder('Card number').fill('4242 4242 4242 4242');
-        await page.frameLocator('iframe[title="Donation Widget"]').frameLocator('iframe[name="__privateStripeFrame6417"]').getByPlaceholder('MM / YY').click();
+       // await page.frameLocator('iframe[title="Donation Widget"]').frameLocator('iframe[name="__privateStripeFrame6417"]').getByPlaceholder('MM / YY').click();
         await page.frameLocator('iframe[title="Donation Widget"]').frameLocator('iframe[name="__privateStripeFrame6417"]').getByPlaceholder('MM / YY').fill('04 / 24');
         await page.frameLocator('iframe[title="Donation Widget"]').frameLocator('iframe[name="__privateStripeFrame6418"]').getByPlaceholder('CVC').fill('000');
         await page.frameLocator('iframe[title="Donation Widget"]').getByRole('button', { name: 'Continue' }).click();
