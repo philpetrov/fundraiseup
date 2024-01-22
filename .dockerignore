@@ -1,0 +1,7 @@
+/test-results/
+/tests-examples
+/playwright-reports/
+/allure-results
+/allure-report
+/blob-report/
+/playwright/.cache/
