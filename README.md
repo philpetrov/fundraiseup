@@ -1,6 +1,7 @@
 # Instructions for test project: "test task using playwright"
 
 #  To build and run tests using docker:
+- npm i -D @playwright/test allure-playwright
 - docker-compose build
 - docker-compose up
 - open results in your browser http://127.0.0.1/allure-report/

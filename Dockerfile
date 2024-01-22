@@ -4,33 +4,37 @@ FROM mcr.microsoft.com/playwright:latest
 # Set the working directory to /app
 WORKDIR /app
 
-# Copy the current directory contents into the container at /app
-COPY . /app
+# Copy package.json and package-lock.json separately to leverage Docker cache
+COPY package.json ./
+COPY package-lock.json ./
 
 # Install dependencies
 RUN npm install 
 
-# Install Allure
+# Install Allure commandline and @playwright/test
 RUN npm install -g allure-commandline
-
-# Install Chrome
+ 
+# Install playwright chrome
 RUN npx playwright install chrome
+ 
+# Copy the rest of the application code
+COPY . .
+ 
+# Install dependencies from package-lock
+RUN npm ci
 
 # Install OpenJDK (Java Development Kit)
 RUN apt-get update && apt-get install -y openjdk-11-jdk
-
+ 
 # Set the JAVA_HOME environment variable
 ENV JAVA_HOME /usr/lib/jvm/java-11-openjdk-amd64
-
+ 
 # Expose the necessary ports
 EXPOSE 80
-
-# Define environment variable
-ENV NODE_ENV=production
-
+ 
 # Install Nginx
 RUN apt-get install -y nginx
-
+ 
 # Copy Nginx configuration
 COPY nginx.conf /etc/nginx/sites-available/default
 
